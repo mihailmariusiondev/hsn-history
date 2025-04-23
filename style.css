@@ -1,69 +1,165 @@
+:root {
+    --primary-color: #007bff; /* Azul HSN (aproximado) */
+    --secondary-color: #f8f9fa; /* Gris claro */
+    --text-color: #333;
+    --border-color: #dee2e6;
+    --hover-bg-color: #e9ecef;
+    --chart-line-color: #28a745; /* Verde */
+}
+
 body {
-    font-family: sans-serif;
-    margin: 20px;
-    background-color: #f4f4f4;
-    color: #333;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    margin: 0;
+    padding: 20px;
+    background-color: var(--secondary-color);
+    color: var(--text-color);
+    line-height: 1.5;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 20px auto;
+    background-color: #fff;
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
 }
 
 h1, h2 {
     text-align: center;
+    color: var(--primary-color);
+    margin-bottom: 1.5em;
+}
+
+h2 {
+    margin-top: 2em;
     color: #555;
 }
 
+
 .controls {
-    margin-bottom: 20px;
+    margin-bottom: 30px;
     text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 15px; /* Espacio entre label, input y botón */
 }
 
 .controls label {
-    margin-right: 10px;
+    margin: 0;
+    font-weight: bold;
 }
 
 #productSearch {
-    padding: 8px;
-    min-width: 250px;
-    border: 1px solid #ccc;
+    padding: 10px 15px;
+    min-width: 300px;
+    border: 1px solid var(--border-color);
     border-radius: 4px;
+    font-size: 1rem;
+    transition: border-color 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
 }
+
+#productSearch:focus {
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
+    outline: none;
+}
+
+#clearSearchBtn {
+    padding: 10px 15px;
+    font-size: 1rem;
+    color: #fff;
+    background-color: #6c757d; /* Gris oscuro */
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.2s ease-in-out;
+}
+
+#clearSearchBtn:hover {
+    background-color: #5a6268;
+}
+
 
 .chart-container {
-    width: 80%;
-    max-width: 800px;
-    margin: 20px auto;
+    position: relative; /* Necesario para el mensaje */
+    width: 90%;
+    max-width: 900px;
+    height: 400px; /* Altura fija para el gráfico */
+    margin: 40px auto;
     background-color: #fff;
-    padding: 15px;
-    border-radius: 5px;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+    border: 1px solid var(--border-color);
 }
 
+#chartMessage {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: #888;
+    font-style: italic;
+    display: none; /* Oculto por defecto */
+}
+
+
 .table-container {
-    margin-top: 30px;
-    overflow-x: auto; /* Para tablas anchas en pantallas pequeñas */
+    margin-top: 40px;
+    overflow-x: auto;
 }
 
 #historyTable {
     width: 100%;
     border-collapse: collapse;
-    margin-top: 10px;
+    margin-top: 15px;
     background-color: #fff;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+    border: 1px solid var(--border-color);
+    border-radius: 5px; /* Bordes redondeados para la tabla */
+    overflow: hidden; /* Para que el radius funcione */
 }
 
 #historyTable th, #historyTable td {
-    border: 1px solid #ddd;
-    padding: 10px;
+    border: none; /* Quitar bordes internos */
+    border-bottom: 1px solid var(--border-color); /* Línea solo abajo */
+    padding: 12px 15px;
     text-align: left;
+    vertical-align: middle;
 }
 
 #historyTable th {
-    background-color: #e9e9e9;
-    font-weight: bold;
+    background-color: #f8f9fa; /* Fondo cabecera más suave */
+    font-weight: 600; /* Semi-bold */
+    color: #495057;
+    border-bottom-width: 2px; /* Línea más gruesa bajo cabecera */
 }
 
-#historyTable tbody tr:nth-child(even) {
-    background-color: #f9f9f9;
+#historyTable tbody tr:last-child td {
+    border-bottom: none; /* Quitar borde de la última fila */
 }
+
 
 #historyTable tbody tr:hover {
-    background-color: #f1f1f1;
+    background-color: var(--hover-bg-color);
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .container {
+        padding: 15px;
+    }
+    .controls {
+        flex-direction: column;
+        gap: 10px;
+    }
+    #productSearch {
+        min-width: 90%;
+    }
+    .chart-container {
+        width: 100%;
+        height: 300px; /* Menos altura en móvil */
+    }
 }
