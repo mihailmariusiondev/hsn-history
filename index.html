@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Historial Precios HSN</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <h1>Historial de Precios HSN</h1>
+
+    <div class="controls">
+        <label for="productSearch">Buscar Producto:</label>
+        <input type="text" id="productSearch" placeholder="Escribe nombre o parte...">
+    </div>
+
+    <div class="chart-container">
+        <canvas id="priceChart"></canvas>
+    </div>
+
+    <div class="table-container">
+        <h2>Historial Completo</h2>
+        <table id="historyTable">
+            <thead>
+                <tr>
+                    <th>Fecha Pedido</th>
+                    <th>Nombre Producto</th>
+                    <th>Cantidad</th>
+                    <th>Precio Total (€)</th>
+                    <th>Precio Unitario (€)</th>
+                    <th>ID Pedido</th>
+                </tr>
+            </thead>
+            <tbody id="historyTableBody">
+                <!-- Las filas se generarán con JavaScript -->
+            </tbody>
+        </table>
+    </div>
+
+    <!-- Incluir Chart.js desde CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <!-- Incluir nuestro script -->
+    <script src="script.js"></script>
+</body>
+</html>

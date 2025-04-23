@@ -1,0 +1,69 @@
+body {
+    font-family: sans-serif;
+    margin: 20px;
+    background-color: #f4f4f4;
+    color: #333;
+}
+
+h1, h2 {
+    text-align: center;
+    color: #555;
+}
+
+.controls {
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.controls label {
+    margin-right: 10px;
+}
+
+#productSearch {
+    padding: 8px;
+    min-width: 250px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.chart-container {
+    width: 80%;
+    max-width: 800px;
+    margin: 20px auto;
+    background-color: #fff;
+    padding: 15px;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.table-container {
+    margin-top: 30px;
+    overflow-x: auto; /* Para tablas anchas en pantallas pequeñas */
+}
+
+#historyTable {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 10px;
+    background-color: #fff;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+#historyTable th, #historyTable td {
+    border: 1px solid #ddd;
+    padding: 10px;
+    text-align: left;
+}
+
+#historyTable th {
+    background-color: #e9e9e9;
+    font-weight: bold;
+}
+
+#historyTable tbody tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+#historyTable tbody tr:hover {
+    background-color: #f1f1f1;
+}
