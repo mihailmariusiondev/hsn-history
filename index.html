@@ -11,55 +11,64 @@
 </head>
 <body>
 
-    <div class="container"> <!-- Contenedor principal más ancho -->
+    <div class="container">
 
         <header class="app-header">
             <h1>Análisis Historial de Precios HSN</h1>
-            <div class="controls">
-                <label for="productSearch">Buscar Grupo Producto:</label>
-                <input type="text" id="productSearch" placeholder="Escribe nombre o formato...">
-                <button id="clearSearchBtn" title="Limpiar búsqueda">Limpiar</button>
+            <div class="filters-and-search">
+                 <div class="filter-control">
+                     <label for="categoryFilter">Categoría:</label>
+                     <select id="categoryFilter">
+                         <option value="all">-- Todas --</option>
+                         <!-- Options populated by JS -->
+                     </select>
+                 </div>
+                 <div class="search-control">
+                     <label for="productSearch">Buscar Producto:</label>
+                     <input type="text" id="productSearch" placeholder="Nombre o formato...">
+                     <button id="clearSearchBtn" title="Limpiar búsqueda y filtros">Limpiar Todo</button>
+                 </div>
             </div>
         </header>
 
-        <!-- Nueva Área Principal para Contenido Lado a Lado -->
         <main class="main-content-area">
 
-            <!-- Contenedor Izquierdo: Tabla -->
             <section class="table-section">
-                <h2>Resumen de Compras (Agrupado)</h2>
+                <h2>
+                    Resumen de Compras (Agrupado)
+                    <span id="itemCount">(0 Productos)</span> <!-- Contador de items -->
+                </h2>
                 <div class="table-container">
                     <table id="historyTable">
                         <thead>
                             <tr>
-                                <th>Producto (Formato)</th>
-                                <th>Nº Compras</th>
-                                <th>Primera Compra</th>
-                                <th>Última Compra</th>
-                                <th>Último €/ud</th>
-                                <th>Detalles</th>
+                                <!-- Add data-sort keys matching keys in the grouped data summary -->
+                                <th data-sort="groupKey">Producto (Formato)</th>
+                                <th data-sort="count" class="text-right">Nº Compras</th>
+                                <th data-sort="firstDate">Primera Compra</th>
+                                <th data-sort="lastDate">Última Compra</th>
+                                <th data-sort="lastPrice" class="text-right">Último €/ud</th>
+                                <th class="text-center no-sort">Detalles</th> <!-- No-sort class -->
                             </tr>
                         </thead>
                         <tbody id="historyTableBody">
-                            <!-- Las filas se generarán con JavaScript -->
-                            <tr><td colspan="6">Cargando datos...</td></tr> <!-- Mensaje inicial -->
+                            <tr><td colspan="6">Cargando datos...</td></tr>
                         </tbody>
                     </table>
                 </div>
             </section>
 
-            <!-- Contenedor Derecho: Gráfico -->
             <section class="chart-section">
                 <h2>Evolución Precio Unitario</h2>
                 <div class="chart-container">
                     <canvas id="priceChart"></canvas>
-                    <div id="chartMessage">Selecciona un producto de la tabla o realiza una búsqueda exacta para ver su gráfico.</div> <!-- Mensaje para el gráfico -->
+                    <div id="chartMessage">Selecciona un producto de la tabla o realiza una búsqueda exacta para ver su gráfico.</div>
                 </div>
             </section>
 
-        </main> <!-- Fin main-content-area -->
+        </main>
 
-        <!-- Modal para detalles del producto (sin cambios) -->
+        <!-- Modal (no changes) -->
         <div id="detailsModal" class="modal">
             <div class="modal-content">
                 <span class="close-button">&times;</span>
@@ -75,19 +84,15 @@
                             <th>ID Pedido</th>
                         </tr>
                     </thead>
-                    <tbody id="detailsTableBody">
-                        <!-- Contenido dinámico -->
-                    </tbody>
+                    <tbody id="detailsTableBody"></tbody>
                 </table>
             </div>
         </div>
 
-    </div> <!-- Fin container -->
+    </div>
 
-    <!-- Incluir Chart.js desde CDN -->
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/chartjs-adapter-date-fns/dist/chartjs-adapter-date-fns.bundle.min.js"></script> <!-- Adaptador de fecha -->
-    <!-- Incluir nuestro script -->
+    <script src="https://cdn.jsdelivr.net/npm/chartjs-adapter-date-fns/dist/chartjs-adapter-date-fns.bundle.min.js"></script>
     <script src="script.js"></script>
 </body>
 </html>
