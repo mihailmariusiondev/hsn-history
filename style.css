@@ -5,6 +5,15 @@
     --border-color: #dee2e6;
     --hover-bg-color: #e9ecef;
     --chart-line-color: #28a745; /* Verde */
+    --button-secondary-bg: #6c757d; /* Gris oscuro botón Limpiar */
+    --button-secondary-hover-bg: #5a6268;
+    --button-details-bg: #17a2b8; /* Azul verdoso para Detalles */
+    --button-details-hover-bg: #138496;
+    --modal-backdrop: rgba(0,0,0,0.6);
+    --modal-bg: #fff;
+    --modal-border: #ccc;
+    --modal-close-color: #aaa;
+    --modal-close-hover-color: #333;
 }
 
 body {
@@ -13,85 +22,106 @@ body {
     padding: 20px;
     background-color: var(--secondary-color);
     color: var(--text-color);
-    line-height: 1.5;
+    line-height: 1.6; /* Ligeramente más espacio entre líneas */
 }
 
 .container {
     max-width: 1200px;
-    margin: 20px auto;
+    margin: 30px auto; /* Más margen superior/inferior */
     background-color: #fff;
-    padding: 30px;
+    padding: 30px 40px; /* Más padding horizontal */
     border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    box-shadow: 0 6px 12px rgba(0,0,0,0.1);
 }
 
-h1, h2 {
+h1 {
     text-align: center;
     color: var(--primary-color);
-    margin-bottom: 1.5em;
+    margin-bottom: 0.5em; /* Menos espacio debajo del H1 */
 }
 
 h2 {
-    margin-top: 2em;
-    color: #555;
+    text-align: center;
+    color: #444; /* Un poco más oscuro */
+    margin-top: 2.5em; /* Más espacio antes de H2 */
+    margin-bottom: 1.5em;
+    font-weight: 500; /* Ligeramente menos grueso que H1 */
 }
 
+/* Títulos específicos */
+h1 + h2 { /* El subtítulo directamente bajo H1 */
+    margin-top: 0.5em;
+    margin-bottom: 2em;
+    font-size: 1.2rem;
+    color: #666;
+}
 
 .controls {
-    margin-bottom: 30px;
+    margin-bottom: 35px;
     text-align: center;
     display: flex;
+    flex-wrap: wrap; /* Permitir que pasen a la siguiente línea en pantallas pequeñas */
     justify-content: center;
     align-items: center;
-    gap: 15px; /* Espacio entre label, input y botón */
+    gap: 15px;
 }
 
 .controls label {
     margin: 0;
-    font-weight: bold;
+    font-weight: 600; /* Un poco más de peso */
+    color: #555;
 }
 
 #productSearch {
     padding: 10px 15px;
     min-width: 300px;
     border: 1px solid var(--border-color);
-    border-radius: 4px;
+    border-radius: 5px; /* Bordes más redondeados */
     font-size: 1rem;
     transition: border-color 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+    box-shadow: inset 0 1px 2px rgba(0,0,0,0.07); /* Sombra interior sutil */
 }
 
 #productSearch:focus {
     border-color: var(--primary-color);
-    box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
+    box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25), inset 0 1px 2px rgba(0,0,0,0.07);
     outline: none;
 }
 
-#clearSearchBtn {
-    padding: 10px 15px;
-    font-size: 1rem;
-    color: #fff;
-    background-color: #6c757d; /* Gris oscuro */
+/* Estilos base para botones en controls */
+.controls button {
+     padding: 10px 18px; /* Un poco más de padding */
+    font-size: 0.95rem;
     border: none;
-    border-radius: 4px;
+    border-radius: 5px;
     cursor: pointer;
-    transition: background-color 0.2s ease-in-out;
+    transition: background-color 0.2s ease-in-out, transform 0.1s ease;
+    font-weight: 500;
+}
+
+.controls button:active {
+    transform: translateY(1px); /* Efecto presionado */
+}
+
+#clearSearchBtn {
+    color: #fff;
+    background-color: var(--button-secondary-bg);
 }
 
 #clearSearchBtn:hover {
-    background-color: #5a6268;
+    background-color: var(--button-secondary-hover-bg);
 }
 
-
 .chart-container {
-    position: relative; /* Necesario para el mensaje */
-    width: 90%;
-    max-width: 900px;
-    height: 400px; /* Altura fija para el gráfico */
+    position: relative;
+    width: 95%; /* Ligeramente más ancho */
+    max-width: 950px; /* Aumentar ancho máx */
+    height: 450px; /* Un poco más alto */
     margin: 40px auto;
     background-color: #fff;
-    padding: 20px;
+    padding: 25px;
     border-radius: 8px;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.07); /* Sombra más suave */
     border: 1px solid var(--border-color);
 }
 
@@ -102,13 +132,14 @@ h2 {
     transform: translate(-50%, -50%);
     color: #888;
     font-style: italic;
+    text-align: center;
+    padding: 0 20px; /* Evitar que toque los bordes */
     display: none; /* Oculto por defecto */
 }
 
-
 .table-container {
     margin-top: 40px;
-    overflow-x: auto;
+    overflow-x: auto; /* Mantener scroll horizontal si es necesario */
 }
 
 #historyTable {
@@ -116,50 +147,210 @@ h2 {
     border-collapse: collapse;
     margin-top: 15px;
     background-color: #fff;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+    box-shadow: 0 3px 6px rgba(0,0,0,0.06);
     border: 1px solid var(--border-color);
-    border-radius: 5px; /* Bordes redondeados para la tabla */
-    overflow: hidden; /* Para que el radius funcione */
+    border-radius: 6px;
+    overflow: hidden;
 }
 
-#historyTable th, #historyTable td {
-    border: none; /* Quitar bordes internos */
-    border-bottom: 1px solid var(--border-color); /* Línea solo abajo */
-    padding: 12px 15px;
+#historyTable th,
+#historyTable td {
+    border: none;
+    border-bottom: 1px solid var(--border-color);
+    padding: 14px 16px; /* Más padding vertical */
     text-align: left;
-    vertical-align: middle;
+    vertical-align: middle; /* Alinear verticalmente al centro */
+    font-size: 0.9rem; /* Tamaño de fuente ligeramente menor para más info */
 }
+
+ #historyTable td:last-child {
+     text-align: center; /* Centrar botón Detalles */
+ }
 
 #historyTable th {
-    background-color: #f8f9fa; /* Fondo cabecera más suave */
-    font-weight: 600; /* Semi-bold */
+    background-color: var(--secondary-color);
+    font-weight: 600;
     color: #495057;
-    border-bottom-width: 2px; /* Línea más gruesa bajo cabecera */
+    border-bottom-width: 2px;
+    font-size: 0.95rem; /* Ligeramente mayor que td */
+    white-space: nowrap; /* Evitar que los títulos se partan */
 }
 
 #historyTable tbody tr:last-child td {
-    border-bottom: none; /* Quitar borde de la última fila */
+    border-bottom: none;
 }
 
+#historyTable tbody tr:nth-child(even) {
+    background-color: #fdfdfd; /* Fondo muy sutil para filas pares */
+}
 
 #historyTable tbody tr:hover {
     background-color: var(--hover-bg-color);
 }
 
+/* Botón Detalles en la tabla */
+.details-btn {
+    padding: 6px 12px;
+    font-size: 0.85rem;
+    color: #fff;
+    background-color: var(--button-details-bg);
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.2s ease-in-out;
+    white-space: nowrap;
+}
+
+.details-btn:hover {
+    background-color: var(--button-details-hover-bg);
+}
+
+
+/* --- Estilos para el Modal --- */
+.modal {
+    display: none; /* Oculto por defecto */
+    position: fixed; /* Posición fija relativa al viewport */
+    z-index: 1000; /* Asegurar que esté por encima de otros elementos */
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto; /* Permitir scroll si el contenido es muy largo */
+    background-color: var(--modal-backdrop); /* Fondo semi-transparente */
+}
+
+.modal-content {
+    background-color: var(--modal-bg);
+    margin: 8% auto; /* Margen superior/inferior y centrado horizontal */
+    padding: 30px 35px; /* Más padding */
+    border: 1px solid var(--modal-border);
+    width: 85%; /* Ancho relativo */
+    max-width: 950px; /* Ancho máximo */
+    border-radius: 8px;
+    position: relative; /* Para posicionar el botón de cierre */
+    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+}
+
+ .modal-content h3 {
+     margin-top: 0;
+     margin-bottom: 25px;
+     color: var(--primary-color);
+     text-align: center;
+     font-size: 1.4rem;
+ }
+
+.close-button {
+    color: var(--modal-close-color);
+    position: absolute;
+    top: 15px;
+    right: 25px;
+    font-size: 32px; /* Más grande */
+    line-height: 1; /* Ajustar altura línea */
+    font-weight: bold;
+    cursor: pointer;
+    transition: color 0.2s ease;
+}
+
+.close-button:hover,
+.close-button:focus {
+    color: var(--modal-close-hover-color);
+    text-decoration: none;
+    outline: none;
+}
+
+#detailsTable {
+    width: 100%;
+    margin-top: 20px;
+    border-collapse: collapse;
+    font-size: 0.88rem; /* Un poco más pequeño para caber más */
+}
+
+#detailsTable th,
+#detailsTable td {
+    border: 1px solid var(--border-color);
+    padding: 10px 14px;
+    text-align: left;
+    vertical-align: middle;
+}
+
+#detailsTable th {
+    background-color: var(--secondary-color);
+    font-weight: 600;
+     white-space: nowrap;
+}
+
+#detailsTable tbody tr:nth-child(even) {
+    background-color: #f9f9f9; /* Alternar color filas */
+}
+
+#detailsTable tbody tr:hover {
+    background-color: var(--hover-bg-color);
+}
+
+
 /* Responsive adjustments */
 @media (max-width: 768px) {
+    body {
+        padding: 10px;
+    }
     .container {
-        padding: 15px;
+        padding: 20px 15px;
+        margin: 15px auto;
     }
     .controls {
         flex-direction: column;
-        gap: 10px;
+        gap: 12px;
     }
     #productSearch {
-        min-width: 90%;
+        min-width: initial; /* Reset min-width */
+        width: 90%; /* Ocupar casi todo el ancho */
+    }
+    .controls button {
+        width: 90%;
+        padding: 12px 15px;
     }
     .chart-container {
         width: 100%;
-        height: 300px; /* Menos altura en móvil */
+        height: 350px; /* Reducir altura en móvil */
+        padding: 15px;
     }
+     h1 { font-size: 1.8rem; }
+     h2 { font-size: 1.3rem; margin-top: 2em; }
+     h1 + h2 { font-size: 1.1rem; margin-bottom: 1.5em;}
+
+     #historyTable th,
+     #historyTable td {
+         padding: 10px 8px;
+         font-size: 0.8rem; /* Reducir más fuente en móvil */
+     }
+     .details-btn {
+         padding: 5px 8px;
+         font-size: 0.75rem;
+     }
+
+    .modal-content {
+        width: 95%;
+        margin: 15% auto; /* Ajustar margen modal */
+        padding: 20px;
+    }
+     .modal-content h3 { font-size: 1.2rem; margin-bottom: 20px;}
+     #detailsTable th,
+     #detailsTable td {
+         padding: 8px 10px;
+         font-size: 0.78rem;
+     }
+     .close-button { top: 10px; right: 15px; font-size: 28px;}
+}
+
+@media (max-width: 480px) {
+    #historyTable th,
+    #historyTable td {
+         font-size: 0.75rem; /* Aún más pequeño si es necesario */
+         padding: 8px 5px;
+     }
+    .details-btn {
+         font-size: 0.7rem;
+         padding: 4px 6px;
+     }
+     /* Podrías considerar ocultar algunas columnas menos críticas en pantallas muy pequeñas */
 }

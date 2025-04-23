@@ -11,37 +11,73 @@
     <div class="container"> <!-- Contenedor principal -->
 
         <h1>Historial de Precios HSN</h1>
+        <h2>Evolución de Precios por Producto (Agrupado por Formato)</h2>
 
         <div class="controls">
-            <label for="productSearch">Buscar Producto:</label>
-            <input type="text" id="productSearch" placeholder="Escribe nombre o parte...">
-            <button id="clearSearchBtn" title="Limpiar búsqueda">Limpiar</button> <!-- Botón añadido -->
+            <label for="productSearch">Buscar Grupo Producto:</label>
+            <input type="text" id="productSearch" placeholder="Escribe nombre o formato...">
+            <button id="clearSearchBtn" title="Limpiar búsqueda">Limpiar</button>
         </div>
 
-        <div class="chart-container">
-            <canvas id="priceChart"></canvas>
-            <div id="chartMessage">Introduce un término de búsqueda para ver el gráfico de evolución de un producto.</div> <!-- Mensaje para el gráfico -->
+        <!-- Nueva área para contenido principal (gráfico y tabla) -->
+        <div class="main-content-area">
+
+            <div class="chart-wrapper"> <!-- Wrapper para el gráfico -->
+                <h2>Gráfico de Evolución de Precio Unitario</h2>
+                <div class="chart-container">
+                    <canvas id="priceChart"></canvas>
+                    <div id="chartMessage">Selecciona un producto de la tabla para ver su gráfico de evolución.</div> <!-- Mensaje inicial actualizado -->
+                </div>
+            </div>
+
+            <div class="table-wrapper"> <!-- Wrapper para la tabla -->
+                <h2>Resumen de Compras (Clic en fila para ver gráfico)</h2>
+                <div class="table-container">
+                    <table id="historyTable">
+                        <thead>
+                            <tr>
+                                <th>Producto (Formato)</th>
+                                <th>Nº Compras</th>
+                                <th>Primera Compra (Fecha / Precio Unit. €)</th>
+                                <th>Última Compra (Fecha / Precio Unit. €)</th>
+                                <th>Último Precio Unit. (€)</th>
+                                <th>Ver Detalles</th>
+                            </tr>
+                        </thead>
+                        <tbody id="historyTableBody">
+                            <!-- Las filas se generarán con JavaScript -->
+                            <tr><td colspan="6">Cargando datos...</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+        </div> <!-- Fin main-content-area -->
+
+
+        <!-- Modal para detalles del producto (sin cambios) -->
+        <div id="detailsModal" class="modal">
+            <div class="modal-content">
+                <span class="close-button">&times;</span>
+                <h3 id="modalTitle">Detalles de Compra</h3>
+                <table id="detailsTable">
+                    <thead>
+                        <tr>
+                            <th>Fecha Pedido</th>
+                            <th>Nombre Producto Original</th>
+                            <th>Cantidad</th>
+                            <th>Precio Total (€)</th>
+                            <th>Precio Unitario (€)</th>
+                            <th>ID Pedido</th>
+                        </tr>
+                    </thead>
+                    <tbody id="detailsTableBody">
+                        <!-- Contenido dinámico -->
+                    </tbody>
+                </table>
+            </div>
         </div>
 
-        <div class="table-container">
-            <h2>Historial Completo</h2>
-            <table id="historyTable">
-                <thead>
-                    <tr>
-                        <th>Fecha Pedido</th>
-                        <th>Nombre Producto</th>
-                        <th>Cantidad</th>
-                        <th>Precio Total (€)</th>
-                        <th>Precio Unitario (€)</th>
-                        <th>ID Pedido</th>
-                    </tr>
-                </thead>
-                <tbody id="historyTableBody">
-                    <!-- Las filas se generarán con JavaScript -->
-                    <tr><td colspan="6">Cargando datos...</td></tr> <!-- Mensaje inicial -->
-                </tbody>
-            </table>
-        </div>
 
     </div> <!-- Fin contenedor principal -->
 
