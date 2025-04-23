@@ -1,106 +1,119 @@
 :root {
-    --primary-color: #007bff; /* Azul HSN (aproximado) */
-    --secondary-color: #f8f9fa; /* Gris claro */
-    --text-color: #333;
-    --border-color: #dee2e6;
-    --hover-bg-color: #e9ecef;
-    --chart-line-color: #28a745; /* Verde */
-    --button-secondary-bg: #6c757d; /* Gris oscuro botón Limpiar */
-    --button-secondary-hover-bg: #5a6268;
-    --button-details-bg: #17a2b8; /* Azul verdoso para Detalles */
-    --button-details-hover-bg: #138496;
-    --modal-backdrop: rgba(0,0,0,0.6);
+    --primary-color: #005bbb; /* Azul un poco más oscuro */
+    --secondary-color: #f4f7fc; /* Fondo gris azulado muy claro */
+    --text-color: #2d3748; /* Gris oscuro azulado */
+    --border-color: #e2e8f0; /* Gris claro */
+    --hover-bg-color: #edf2f7; /* Gris azulado más claro para hover */
+    --selected-bg-color: #dbeafe; /* Azul muy claro para selección */
+    --selected-text-color: #1e40af; /* Azul oscuro para texto seleccionado */
+    --chart-line-color: #10b981; /* Verde esmeralda */
+    --chart-bg-color: rgba(16, 185, 129, 0.05); /* Fondo muy ligero para gráfico */
+    --button-secondary-bg: #4a5568; /* Gris medio */
+    --button-secondary-hover-bg: #2d3748; /* Gris más oscuro */
+    --button-details-bg: #3182ce; /* Azul medio */
+    --button-details-hover-bg: #2b6cb0; /* Azul más oscuro */
+    --modal-backdrop: rgba(45, 55, 72, 0.6); /* Backdrop gris oscuro */
     --modal-bg: #fff;
-    --modal-border: #ccc;
-    --modal-close-color: #aaa;
-    --modal-close-hover-color: #333;
+    --modal-border: #e2e8f0;
+    --modal-close-color: #a0aec0;
+    --modal-close-hover-color: #2d3748;
+    --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+    --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+    --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+    --border-radius: 6px; /* Radio de borde consistente */
+}
+
+/* Reset y fuente base */
+*, *::before, *::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
 }
 
 body {
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-    margin: 0;
-    padding: 20px;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
     background-color: var(--secondary-color);
     color: var(--text-color);
-    line-height: 1.6; /* Ligeramente más espacio entre líneas */
+    line-height: 1.6;
+    font-size: 16px; /* Base font size */
+    padding: 20px; /* Padding alrededor de todo */
 }
 
+/* Contenedor Principal */
 .container {
-    max-width: 1200px;
-    margin: 30px auto; /* Más margen superior/inferior */
+    max-width: 90vw; /* Utilizar la mayor parte del ancho de la ventana */
+    min-width: 1024px; /* Ancho mínimo para que el layout funcione bien */
+    margin: 20px auto;
     background-color: #fff;
-    padding: 30px 40px; /* Más padding horizontal */
-    border-radius: 8px;
-    box-shadow: 0 6px 12px rgba(0,0,0,0.1);
+    padding: 25px 35px;
+    border-radius: var(--border-radius);
+    box-shadow: var(--shadow-lg);
+    border: 1px solid var(--border-color);
 }
 
-h1 {
-    text-align: center;
+/* Header de la App */
+.app-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap; /* Para responsividad */
+    margin-bottom: 30px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid var(--border-color);
+    gap: 15px; /* Espacio entre título y controles si se envuelven */
+}
+
+.app-header h1 {
     color: var(--primary-color);
-    margin-bottom: 0.5em; /* Menos espacio debajo del H1 */
-}
-
-h2 {
-    text-align: center;
-    color: #444; /* Un poco más oscuro */
-    margin-top: 2.5em; /* Más espacio antes de H2 */
-    margin-bottom: 1.5em;
-    font-weight: 500; /* Ligeramente menos grueso que H1 */
-}
-
-/* Títulos específicos */
-h1 + h2 { /* El subtítulo directamente bajo H1 */
-    margin-top: 0.5em;
-    margin-bottom: 2em;
-    font-size: 1.2rem;
-    color: #666;
+    font-size: 1.75rem; /* Tamaño de título ajustado */
+    font-weight: 700;
+    flex-shrink: 0; /* Evitar que se encoja */
 }
 
 .controls {
-    margin-bottom: 35px;
-    text-align: center;
     display: flex;
-    flex-wrap: wrap; /* Permitir que pasen a la siguiente línea en pantallas pequeñas */
-    justify-content: center;
     align-items: center;
-    gap: 15px;
+    gap: 12px; /* Espacio reducido */
+    flex-grow: 1; /* Permitir que crezca */
+    justify-content: flex-end; /* Alinear a la derecha */
 }
 
 .controls label {
-    margin: 0;
-    font-weight: 600; /* Un poco más de peso */
-    color: #555;
+    font-weight: 500;
+    color: var(--text-color);
+    white-space: nowrap;
 }
 
 #productSearch {
-    padding: 10px 15px;
-    min-width: 300px;
+    padding: 9px 14px; /* Padding ajustado */
+    width: 320px; /* Ancho fijo */
     border: 1px solid var(--border-color);
-    border-radius: 5px; /* Bordes más redondeados */
-    font-size: 1rem;
-    transition: border-color 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
-    box-shadow: inset 0 1px 2px rgba(0,0,0,0.07); /* Sombra interior sutil */
+    border-radius: var(--border-radius);
+    font-size: 0.95rem;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+    box-shadow: var(--shadow-sm);
 }
 
 #productSearch:focus {
     border-color: var(--primary-color);
-    box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25), inset 0 1px 2px rgba(0,0,0,0.07);
+    box-shadow: 0 0 0 3px rgba(0, 91, 187, 0.25), var(--shadow-sm);
     outline: none;
 }
 
-/* Estilos base para botones en controls */
 .controls button {
-     padding: 10px 18px; /* Un poco más de padding */
-    font-size: 0.95rem;
+    padding: 9px 16px;
+    font-size: 0.9rem;
     border: none;
-    border-radius: 5px;
+    border-radius: var(--border-radius);
     cursor: pointer;
-    transition: background-color 0.2s ease-in-out, transform 0.1s ease;
+    transition: background-color 0.2s ease, transform 0.1s ease;
     font-weight: 500;
+    box-shadow: var(--shadow-sm);
+    white-space: nowrap;
 }
 
 .controls button:active {
-    transform: translateY(1px); /* Efecto presionado */
+    transform: scale(0.98); /* Efecto presionado */
 }
 
 #clearSearchBtn {
@@ -112,86 +125,122 @@ h1 + h2 { /* El subtítulo directamente bajo H1 */
     background-color: var(--button-secondary-hover-bg);
 }
 
-.chart-container {
-    position: relative;
-    width: 95%; /* Ligeramente más ancho */
-    max-width: 950px; /* Aumentar ancho máx */
-    height: 450px; /* Un poco más alto */
-    margin: 40px auto;
-    background-color: #fff;
-    padding: 25px;
-    border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0,0,0,0.07); /* Sombra más suave */
-    border: 1px solid var(--border-color);
+/* Área Principal: Lado a Lado */
+.main-content-area {
+    display: flex;
+    gap: 30px; /* Separación entre tabla y gráfico */
 }
 
-#chartMessage {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    color: #888;
-    font-style: italic;
-    text-align: center;
-    padding: 0 20px; /* Evitar que toque los bordes */
-    display: none; /* Oculto por defecto */
+/* Sección Izquierda: Tabla */
+.table-section {
+    flex: 2; /* Que la tabla ocupe más espacio (ajustable) */
+    min-width: 500px; /* Ancho mínimo para la tabla */
+    display: flex;
+    flex-direction: column;
 }
 
+/* Sección Derecha: Gráfico */
+.chart-section {
+    flex: 1; /* Que el gráfico ocupe menos espacio */
+    min-width: 400px; /* Ancho mínimo para el gráfico */
+    display: flex;
+    flex-direction: column;
+}
+
+.table-section h2, .chart-section h2 {
+    font-size: 1.25rem;
+    font-weight: 600;
+    margin-bottom: 15px;
+    color: var(--primary-color);
+    padding-bottom: 10px;
+    border-bottom: 1px solid var(--border-color);
+}
+
+/* Contenedor de Tabla con Scroll */
 .table-container {
-    margin-top: 40px;
-    overflow-x: auto; /* Mantener scroll horizontal si es necesario */
+    flex-grow: 1; /* Permitir que crezca para llenar el espacio */
+    overflow-y: auto; /* Scroll vertical SOLO para la tabla */
+    max-height: 65vh; /* Altura máxima antes de que aparezca el scroll */
+    border: 1px solid var(--border-color);
+    border-radius: var(--border-radius);
+    box-shadow: var(--shadow-md);
+    background-color: #fff; /* Fondo blanco para el contenedor */
 }
 
 #historyTable {
     width: 100%;
     border-collapse: collapse;
-    margin-top: 15px;
-    background-color: #fff;
-    box-shadow: 0 3px 6px rgba(0,0,0,0.06);
-    border: 1px solid var(--border-color);
-    border-radius: 6px;
-    overflow: hidden;
 }
 
 #historyTable th,
 #historyTable td {
-    border: none;
     border-bottom: 1px solid var(--border-color);
-    padding: 14px 16px; /* Más padding vertical */
+    padding: 12px 15px; /* Padding estándar */
     text-align: left;
-    vertical-align: middle; /* Alinear verticalmente al centro */
-    font-size: 0.9rem; /* Tamaño de fuente ligeramente menor para más info */
+    vertical-align: middle;
+    font-size: 0.875rem; /* Tamaño de fuente base 14px */
+    white-space: normal; /* Permitir que el texto largo se ajuste */
 }
 
- #historyTable td:last-child {
-     text-align: center; /* Centrar botón Detalles */
+ #historyTable td:last-child { /* Celda botones */
+     text-align: center;
+ }
+ #historyTable td:nth-child(2), /* Nº Compras */
+ #historyTable td:nth-child(5) { /* Último €/ud */
+     text-align: right;
+     white-space: nowrap;
+ }
+ #historyTable th:nth-child(2),
+ #historyTable th:nth-child(5) {
+     text-align: right;
+ }
+ #historyTable th:nth-child(6) {
+     text-align: center;
  }
 
+
 #historyTable th {
-    background-color: var(--secondary-color);
+    background-color: #f9fafb; /* Fondo cabecera muy ligero */
     font-weight: 600;
-    color: #495057;
+    color: #374151; /* Gris oscuro */
+    position: sticky; /* Cabecera pegajosa */
+    top: 0; /* Pegar al borde superior del .table-container */
+    z-index: 10;
     border-bottom-width: 2px;
-    font-size: 0.95rem; /* Ligeramente mayor que td */
-    white-space: nowrap; /* Evitar que los títulos se partan */
+    border-color: var(--border-color);
+    white-space: nowrap;
+}
+
+#historyTable tbody tr {
+    transition: background-color 0.15s ease-in-out;
+    cursor: pointer; /* Indicar que las filas son clicables */
 }
 
 #historyTable tbody tr:last-child td {
     border-bottom: none;
 }
 
-#historyTable tbody tr:nth-child(even) {
-    background-color: #fdfdfd; /* Fondo muy sutil para filas pares */
-}
-
 #historyTable tbody tr:hover {
     background-color: var(--hover-bg-color);
 }
 
-/* Botón Detalles en la tabla */
+/* Estilo para la fila seleccionada */
+#historyTable tbody tr.selected-row {
+    background-color: var(--selected-bg-color);
+    color: var(--selected-text-color); /* Opcional: Cambiar color de texto */
+}
+#historyTable tbody tr.selected-row:hover {
+    background-color: var(--selected-bg-color); /* Mantener color al hacer hover */
+}
+#historyTable tbody tr.selected-row .details-btn {
+     background-color: var(--primary-color); /* Cambiar botón en fila seleccionada */
+}
+
+
+/* Botón Detalles */
 .details-btn {
-    padding: 6px 12px;
-    font-size: 0.85rem;
+    padding: 5px 10px;
+    font-size: 0.8rem;
     color: #fff;
     background-color: var(--button-details-bg);
     border: none;
@@ -199,6 +248,7 @@ h1 + h2 { /* El subtítulo directamente bajo H1 */
     cursor: pointer;
     transition: background-color 0.2s ease-in-out;
     white-space: nowrap;
+    box-shadow: var(--shadow-sm);
 }
 
 .details-btn:hover {
@@ -206,29 +256,59 @@ h1 + h2 { /* El subtítulo directamente bajo H1 */
 }
 
 
-/* --- Estilos para el Modal --- */
+/* Contenedor de Gráfico */
+.chart-container {
+    flex-grow: 1;
+    position: relative;
+    padding: 20px;
+    border: 1px solid var(--border-color);
+    border-radius: var(--border-radius);
+    background-color: #fff; /* Fondo blanco */
+    box-shadow: var(--shadow-md);
+    min-height: 400px; /* Altura mínima para el gráfico */
+    display: flex; /* Centrar mensaje */
+    align-items: center;
+    justify-content: center;
+}
+
+#priceChart {
+    max-height: 60vh; /* Asegurar que no se haga demasiado alto */
+}
+
+
+#chartMessage {
+    position: absolute; /* Ya no necesita ser absoluto si chart-container es flex */
+    color: #6b7280; /* Gris medio */
+    font-style: italic;
+    text-align: center;
+    padding: 0 20px;
+    display: block; /* Mostrar por defecto */
+    max-width: 80%;
+}
+
+/* --- Estilos para el Modal (sin cambios significativos) --- */
 .modal {
-    display: none; /* Oculto por defecto */
-    position: fixed; /* Posición fija relativa al viewport */
-    z-index: 1000; /* Asegurar que esté por encima de otros elementos */
+    display: none;
+    position: fixed;
+    z-index: 1000;
     left: 0;
     top: 0;
     width: 100%;
     height: 100%;
-    overflow: auto; /* Permitir scroll si el contenido es muy largo */
-    background-color: var(--modal-backdrop); /* Fondo semi-transparente */
+    overflow: auto;
+    background-color: var(--modal-backdrop);
 }
 
 .modal-content {
     background-color: var(--modal-bg);
-    margin: 8% auto; /* Margen superior/inferior y centrado horizontal */
-    padding: 30px 35px; /* Más padding */
+    margin: 7% auto; /* Margen ajustado */
+    padding: 30px 40px;
     border: 1px solid var(--modal-border);
-    width: 85%; /* Ancho relativo */
-    max-width: 950px; /* Ancho máximo */
-    border-radius: 8px;
-    position: relative; /* Para posicionar el botón de cierre */
-    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+    width: 80%;
+    max-width: 1000px; /* Modal un poco más ancho */
+    border-radius: var(--border-radius);
+    position: relative;
+    box-shadow: var(--shadow-lg);
 }
 
  .modal-content h3 {
@@ -236,7 +316,8 @@ h1 + h2 { /* El subtítulo directamente bajo H1 */
      margin-bottom: 25px;
      color: var(--primary-color);
      text-align: center;
-     font-size: 1.4rem;
+     font-size: 1.5rem; /* Título modal más grande */
+     font-weight: 600;
  }
 
 .close-button {
@@ -244,8 +325,8 @@ h1 + h2 { /* El subtítulo directamente bajo H1 */
     position: absolute;
     top: 15px;
     right: 25px;
-    font-size: 32px; /* Más grande */
-    line-height: 1; /* Ajustar altura línea */
+    font-size: 32px;
+    line-height: 1;
     font-weight: bold;
     cursor: pointer;
     transition: color 0.2s ease;
@@ -262,7 +343,7 @@ h1 + h2 { /* El subtítulo directamente bajo H1 */
     width: 100%;
     margin-top: 20px;
     border-collapse: collapse;
-    font-size: 0.88rem; /* Un poco más pequeño para caber más */
+    font-size: 0.875rem;
 }
 
 #detailsTable th,
@@ -274,13 +355,13 @@ h1 + h2 { /* El subtítulo directamente bajo H1 */
 }
 
 #detailsTable th {
-    background-color: var(--secondary-color);
+    background-color: #f9fafb;
     font-weight: 600;
      white-space: nowrap;
 }
 
 #detailsTable tbody tr:nth-child(even) {
-    background-color: #f9f9f9; /* Alternar color filas */
+    background-color: #f9fafb;
 }
 
 #detailsTable tbody tr:hover {
@@ -289,68 +370,52 @@ h1 + h2 { /* El subtítulo directamente bajo H1 */
 
 
 /* Responsive adjustments */
-@media (max-width: 768px) {
-    body {
-        padding: 10px;
-    }
+@media (max-width: 1200px) {
     .container {
-        padding: 20px 15px;
-        margin: 15px auto;
-    }
-    .controls {
-        flex-direction: column;
-        gap: 12px;
-    }
-    #productSearch {
-        min-width: initial; /* Reset min-width */
-        width: 90%; /* Ocupar casi todo el ancho */
-    }
-    .controls button {
-        width: 90%;
-        padding: 12px 15px;
-    }
-    .chart-container {
-        width: 100%;
-        height: 350px; /* Reducir altura en móvil */
-        padding: 15px;
-    }
-     h1 { font-size: 1.8rem; }
-     h2 { font-size: 1.3rem; margin-top: 2em; }
-     h1 + h2 { font-size: 1.1rem; margin-bottom: 1.5em;}
-
-     #historyTable th,
-     #historyTable td {
-         padding: 10px 8px;
-         font-size: 0.8rem; /* Reducir más fuente en móvil */
-     }
-     .details-btn {
-         padding: 5px 8px;
-         font-size: 0.75rem;
-     }
-
-    .modal-content {
-        width: 95%;
-        margin: 15% auto; /* Ajustar margen modal */
+        max-width: 95vw; /* Reducir ancho */
+        min-width: initial; /* Quitar ancho mínimo */
         padding: 20px;
     }
-     .modal-content h3 { font-size: 1.2rem; margin-bottom: 20px;}
-     #detailsTable th,
-     #detailsTable td {
-         padding: 8px 10px;
-         font-size: 0.78rem;
+    .main-content-area {
+        flex-direction: column; /* Apilar tabla y gráfico */
+        gap: 25px;
+    }
+    .table-section, .chart-section {
+        min-width: initial; /* Quitar ancho mínimo */
+        flex-basis: auto; /* Resetear base flex */
+    }
+    .table-container {
+        max-height: 50vh; /* Reducir altura max tabla */
+    }
+     .chart-container {
+        min-height: 350px; /* Reducir altura mínima gráfico */
      }
-     .close-button { top: 10px; right: 15px; font-size: 28px;}
+     #priceChart {
+         max-height: 45vh; /* Reducir altura max gráfico */
+     }
+
+     .app-header {
+         flex-direction: column;
+         align-items: stretch; /* Alinear elementos a lo ancho */
+         padding-bottom: 15px;
+         margin-bottom: 20px;
+     }
+     .app-header h1 { text-align: center; margin-bottom: 10px;}
+     .controls { justify-content: center; } /* Centrar controles */
+     #productSearch { width: auto; flex-grow: 1; } /* Input ocupa espacio */
 }
 
-@media (max-width: 480px) {
-    #historyTable th,
-    #historyTable td {
-         font-size: 0.75rem; /* Aún más pequeño si es necesario */
-         padding: 8px 5px;
-     }
-    .details-btn {
-         font-size: 0.7rem;
-         padding: 4px 6px;
-     }
-     /* Podrías considerar ocultar algunas columnas menos críticas en pantallas muy pequeñas */
+@media (max-width: 768px) {
+     body { padding: 10px; font-size: 15px; }
+     .container { padding: 15px; }
+     .app-header h1 { font-size: 1.5rem; }
+     .controls { flex-direction: column; gap: 10px; }
+     #productSearch, .controls button { width: 100%; }
+
+     #historyTable th, #historyTable td { font-size: 0.8rem; padding: 10px 8px; }
+     .details-btn { font-size: 0.75rem; padding: 4px 8px;}
+
+      .modal-content { width: 90%; margin: 10% auto; padding: 20px;}
+      .modal-content h3 { font-size: 1.3rem;}
+      #detailsTable th, #detailsTable td { font-size: 0.8rem; padding: 8px 10px;}
 }
