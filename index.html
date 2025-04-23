@@ -1,98 +1,97 @@
 <!DOCTYPE html>
 <html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Historial Precios HSN - Análisis</title>
-    <link rel="stylesheet" href="style.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-</head>
-<body>
-
+    <link rel="stylesheet" href="style.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  </head>
+  <body>
     <div class="container">
-
-        <header class="app-header">
-            <h1>Análisis Historial de Precios HSN</h1>
-            <div class="filters-and-search">
-                 <div class="filter-control">
-                     <label for="categoryFilter">Categoría:</label>
-                     <select id="categoryFilter">
-                         <option value="all">-- Todas --</option>
-                         <!-- Options populated by JS -->
-                     </select>
-                 </div>
-                 <div class="search-control">
-                     <label for="productSearch">Buscar Producto:</label>
-                     <input type="text" id="productSearch" placeholder="Nombre o formato...">
-                     <button id="clearSearchBtn" title="Limpiar búsqueda y filtros">Limpiar Todo</button>
-                 </div>
-            </div>
-        </header>
-
-        <main class="main-content-area">
-
-            <section class="table-section">
-                <h2>
-                    Resumen de Compras (Agrupado)
-                    <span id="itemCount">(0 Productos)</span> <!-- Contador de items -->
-                </h2>
-                <div class="table-container">
-                    <table id="historyTable">
-                        <thead>
-                            <tr>
-                                <!-- Add data-sort keys matching keys in the grouped data summary -->
-                                <th data-sort="groupKey">Producto (Formato)</th>
-                                <th data-sort="count" class="text-right">Nº Compras</th>
-                                <th data-sort="firstDate">Primera Compra</th>
-                                <th data-sort="lastDate">Última Compra</th>
-                                <th data-sort="lastPrice" class="text-right">Último €/ud</th>
-                                <th class="text-center no-sort">Detalles</th> <!-- No-sort class -->
-                            </tr>
-                        </thead>
-                        <tbody id="historyTableBody">
-                            <tr><td colspan="6">Cargando datos...</td></tr>
-                        </tbody>
-                    </table>
-                </div>
-            </section>
-
-            <section class="chart-section">
-                <h2>Evolución Precio Unitario</h2>
-                <div class="chart-container">
-                    <canvas id="priceChart"></canvas>
-                    <div id="chartMessage">Selecciona un producto de la tabla o realiza una búsqueda exacta para ver su gráfico.</div>
-                </div>
-            </section>
-
-        </main>
-
-        <!-- Modal (no changes) -->
-        <div id="detailsModal" class="modal">
-            <div class="modal-content">
-                <span class="close-button">&times;</span>
-                <h3 id="modalTitle">Detalles de Compra</h3>
-                <table id="detailsTable">
-                    <thead>
-                        <tr>
-                            <th>Fecha Pedido</th>
-                            <th>Nombre Producto Original</th>
-                            <th>Cantidad</th>
-                            <th>Precio Total (€)</th>
-                            <th>Precio Unitario (€)</th>
-                            <th>ID Pedido</th>
-                        </tr>
-                    </thead>
-                    <tbody id="detailsTableBody"></tbody>
-                </table>
-            </div>
+      <header class="app-header">
+        <h1>Análisis Historial de Precios HSN</h1>
+        <div class="filters-and-search">
+          <div class="filter-control">
+            <label for="categoryFilter">Categoría:</label>
+            <select id="categoryFilter">
+              <option value="all">-- Todas --</option>
+              <!-- Options populated by JS -->
+            </select>
+          </div>
+          <div class="search-control">
+            <label for="productSearch">Buscar Producto:</label>
+            <input type="text" id="productSearch" placeholder="Nombre o formato..." />
+            <button id="clearSearchBtn" title="Limpiar búsqueda y filtros">Limpiar Todo</button>
+          </div>
         </div>
+      </header>
 
+      <main class="main-content-area">
+        <section class="table-section">
+          <h2>
+            Resumen de Compras (Agrupado)
+            <span id="itemCount">(0 Productos)</span>
+            <!-- Contador de items -->
+          </h2>
+          <div class="table-container">
+            <table id="historyTable">
+              <thead>
+                <tr>
+                  <!-- Add data-sort keys matching keys in the grouped data summary -->
+                  <th data-sort="groupKey">Producto (Formato)</th>
+                  <th data-sort="count" class="text-right">Nº Compras</th>
+                  <th data-sort="firstDate">Primera Compra</th>
+                  <th data-sort="lastDate">Última Compra</th>
+                  <th data-sort="lastPrice" class="text-right">Último €/ud</th>
+                  <th class="text-center no-sort">Detalles</th>
+                  <!-- No-sort class -->
+                </tr>
+              </thead>
+              <tbody id="historyTableBody">
+                <tr>
+                  <td colspan="6">Cargando datos...</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </section>
+
+        <section class="chart-section">
+          <h2>Evolución Precio Unitario</h2>
+          <div class="chart-container">
+            <canvas id="priceChart"></canvas>
+            <div id="chartMessage">Selecciona un producto de la tabla o realiza una búsqueda exacta para ver su gráfico.</div>
+          </div>
+        </section>
+      </main>
+
+      <!-- Modal (no changes) -->
+      <div id="detailsModal" class="modal">
+        <div class="modal-content">
+          <span class="close-button">&times;</span>
+          <h3 id="modalTitle">Detalles de Compra</h3>
+          <table id="detailsTable">
+            <thead>
+              <tr>
+                <th>Fecha Pedido</th>
+                <th>Nombre Producto Original</th>
+                <th>Cantidad</th>
+                <th>Precio Total (€)</th>
+                <th>Precio Unitario (€)</th>
+                <th>ID Pedido</th>
+              </tr>
+            </thead>
+            <tbody id="detailsTableBody"></tbody>
+          </table>
+        </div>
+      </div>
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/chartjs-adapter-date-fns/dist/chartjs-adapter-date-fns.bundle.min.js"></script>
     <script src="script.js"></script>
-</body>
+  </body>
 </html>
